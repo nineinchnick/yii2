@@ -27,12 +27,6 @@ DROP SCHEMA IF EXISTS "schema2" CASCADE;
 CREATE SCHEMA "schema1";
 CREATE SCHEMA "schema2";
 
-CREATE TABLE "constraints"
-(
-  id integer not null,
-  field1 varchar(255)
-);
-
 CREATE TABLE "profile" (
   id serial not null primary key,
   description varchar(128) NOT NULL
@@ -103,15 +97,6 @@ CREATE TABLE "composite_fk" (
   CONSTRAINT FK_composite_fk_order_item FOREIGN KEY (order_id, item_id) REFERENCES "order_item" (order_id, item_id) ON DELETE CASCADE
 );
 
-CREATE TABLE "null_values" (
-  id serial NOT NULL,
-  var1 INT NULL,
-  var2 INT NULL,
-  var3 INT DEFAULT NULL,
-  stringcol VARCHAR(32) DEFAULT NULL,
-  PRIMARY KEY (id)
-);
-
 CREATE TABLE "type" (
   int_col integer NOT NULL,
   int_col2 integer DEFAULT '1',
@@ -128,6 +113,22 @@ CREATE TABLE "type" (
   bool_col2 boolean DEFAULT TRUE,
   ts_default TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   bit_col BIT(8) NOT NULL DEFAULT B'10000010'
+);
+
+CREATE TABLE "null_values" (
+  id serial NOT NULL,
+  var1 INT NULL,
+  var2 INT NULL,
+  var3 INT DEFAULT NULL,
+  stringcol VARCHAR(32) DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE "constraints"
+(
+  id integer not null,
+  field1 varchar(255),
+  "Quoted ""and"" ` reserved" varchar(255)
 );
 
 CREATE TABLE "bool_values" (

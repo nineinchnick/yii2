@@ -8,6 +8,7 @@ IF OBJECT_ID('[dbo].[customer]', 'U') IS NOT NULL DROP TABLE [dbo].[customer];
 IF OBJECT_ID('[dbo].[profile]', 'U') IS NOT NULL DROP TABLE [dbo].[profile];
 IF OBJECT_ID('[dbo].[type]', 'U') IS NOT NULL DROP TABLE [dbo].[type];
 IF OBJECT_ID('[dbo].[null_values]', 'U') IS NOT NULL DROP TABLE [dbo].[null_values];
+IF OBJECT_ID('[dbo].[constraints]', 'U') IS NOT NULL DROP TABLE [dbo].[constraints];
 IF OBJECT_ID('[dbo].[animal]', 'U') IS NOT NULL DROP TABLE [dbo].[animal];
 IF OBJECT_ID('[dbo].[default_pk]', 'U') IS NOT NULL DROP TABLE [dbo].[default_pk];
 IF OBJECT_ID('[dbo].[document]', 'U') IS NOT NULL DROP TABLE [dbo].[document];
@@ -84,15 +85,6 @@ CREATE TABLE [dbo].[order_item] (
 	[subtotal] [decimal](10,0) NOT NULL
 );
 
-CREATE TABLE [dbo].[null_values] (
-  id [int] UNSIGNED NOT NULL,
-  var1 [int] UNSIGNED NULL,
-  var2 [int] NULL,
-  var3 [int] DEFAULT NULL,
-  stringcol [varchar](32) DEFAULT NULL,
-  PRIMARY KEY (id)
-);
-
 CREATE TABLE [dbo].[type] (
 	[int_col] [int] NOT NULL,
 	[int_col2] [int] DEFAULT '1',
@@ -107,6 +99,22 @@ CREATE TABLE [dbo].[type] (
 	[time] [datetime] NOT NULL DEFAULT '2002-01-01 00:00:00',
 	[bool_col] [tinyint] NOT NULL,
 	[bool_col2] [tinyint] DEFAULT '1'
+);
+
+CREATE TABLE [dbo].[null_values] (
+	id [int] NOT NULL,
+	var1 [int] NULL,
+	var2 [int] NULL,
+	var3 [int] DEFAULT NULL,
+	stringcol [varchar](32) DEFAULT NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE [dbo].[constraints]
+(
+	id [int] not null,
+	field1 [varchar](255),
+	[Quoted "and" `` reserved] varchar(255)
 );
 
 CREATE TABLE [dbo].[animal] (

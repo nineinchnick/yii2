@@ -98,6 +98,16 @@ class SchemaTest extends DatabaseTestCase
         $this->assertEquals('item_id', $table->foreignKeys[0]['item_id']);
     }
 
+    public function testQuotedColumns()
+    {
+
+        /* @var $schema Schema */
+        $schema = $this->getConnection()->schema;
+        $table = $schema->getTableSchema('constraints');
+
+        $this->assertEquals(['id', 'field1', 'Quoted "and" ` reserved'], $table->columnNames);
+    }
+
     public function testGetPDOType()
     {
         $values = [

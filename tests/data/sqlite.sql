@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS "customer";
 DROP TABLE IF EXISTS "profile";
 DROP TABLE IF EXISTS "type";
 DROP TABLE IF EXISTS "null_values";
+DROP TABLE IF EXISTS "constraints";
 DROP TABLE IF EXISTS "animal";
 DROP TABLE IF EXISTS "default_pk";
 DROP TABLE IF EXISTS "document";
@@ -87,14 +88,6 @@ CREATE TABLE "composite_fk" (
   CONSTRAINT FK_composite_fk_order_item FOREIGN KEY (order_id, item_id) REFERENCES "order_item" (order_id, item_id) ON DELETE CASCADE
 );
 
-CREATE TABLE "null_values" (
-  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  var1 INTEGER UNSIGNED,
-  var2 INTEGER,
-  var3 INTEGER DEFAULT NULL,
-  stringcol VARCHAR(32) DEFAULT NULL
-);
-
 CREATE TABLE "type" (
   int_col INTEGER NOT NULL,
   int_col2 INTEGER DEFAULT '1',
@@ -110,6 +103,20 @@ CREATE TABLE "type" (
   bool_col tinyint(1) NOT NULL,
   bool_col2 tinyint(1) DEFAULT '1',
   ts_default TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE "null_values" (
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  var1 INTEGER UNSIGNED,
+  var2 INTEGER,
+  var3 INTEGER DEFAULT NULL,
+  stringcol VARCHAR(32) DEFAULT NULL
+);
+
+CREATE TABLE "constraints" (
+  "id" integer not null,
+  "field1" varchar(255),
+  "Quoted ""and"" ` reserved" varchar(255)
 );
 
 CREATE TABLE "animal" (

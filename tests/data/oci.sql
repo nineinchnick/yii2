@@ -37,12 +37,6 @@ BEGIN EXECUTE IMMEDIATE 'DROP SEQUENCE "document_SEQ"'; EXCEPTION WHEN OTHERS TH
 
 /* STATEMENTS */
 
-CREATE TABLE "constraints"
-(
-  "id" integer not null,
-  "field1" varchar2(255)
-);
-
 CREATE TABLE "profile" (
   "id" integer not null,
   "description" varchar2(128) NOT NULL,
@@ -122,16 +116,6 @@ CREATE TABLE "composite_fk" (
     REFERENCES "order_item" ("order_id", "item_id") ON DELETE CASCADE
 );
 
-CREATE TABLE "null_values" (
-  "id" INT NOT NULL,
-  "var1" INT NULL,
-  "var2" INT NULL,
-  "var3" INT DEFAULT NULL,
-  "stringcol" varchar2(32) DEFAULT NULL,
-  CONSTRAINT "null_values_PK" PRIMARY KEY ("id") ENABLE
-);
-CREATE SEQUENCE "null_values_SEQ";
-
 CREATE TABLE "type" (
   "int_col" integer NOT NULL,
   "int_col2" integer DEFAULT 1,
@@ -148,6 +132,23 @@ CREATE TABLE "type" (
   "bool_col2" char DEFAULT 1 check("bool_col2" in (0,1)),
   "ts_default" TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
   "bit_col" char(3) DEFAULT 130 NOT NULL
+);
+
+CREATE TABLE "null_values" (
+  "id" INT NOT NULL,
+  "var1" INT NULL,
+  "var2" INT NULL,
+  "var3" INT DEFAULT NULL,
+  "stringcol" varchar2(32) DEFAULT NULL,
+  CONSTRAINT "null_values_PK" PRIMARY KEY ("id") ENABLE
+);
+CREATE SEQUENCE "null_values_SEQ";
+
+CREATE TABLE "constraints"
+(
+  "id" integer not null,
+  "field1" varchar2(255),
+  "Quoted \"and\" ` reserved" varchar(255)
 );
 
 CREATE TABLE "bool_values" (
